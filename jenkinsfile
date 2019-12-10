@@ -1,0 +1,36 @@
+pipeline{
+    agent any
+
+    stages{
+        stages('compile stage'){
+
+            steps{
+            withNaven(Maven: 'maven'){
+                sh 'mvn clean complie'
+            }
+
+            }
+        }
+
+        stage('Testing stage'){
+
+            steps{
+            withNaven(Maven: 'maven'){
+                sh 'mvn clean test'
+            }
+
+            }
+
+        }
+
+        stage('Deployment stage'){
+            steps{
+            withNaven(Maven: 'maven'){
+                sh 'mvn clean deloy'
+            }
+
+            }
+
+        }
+    }
+}
